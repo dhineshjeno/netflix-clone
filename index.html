@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Netflix Clone - Stream movies and TV shows online. Browse our collection of popular, trending, and top-rated content.">
+    <title>NETFLIX - Watch Movies & TV Shows Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Framer Motion (standalone) -->
+    <script src="https://unpkg.com/framer-motion@11.0.0/dist/framer-motion.js" type="module"></script>
+</head>
+
+<body>
+
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splash-screen">
+        <div class="splash-logo">
+            <span class="netflix-text-logo">NETFLIX</span>
+            <div class="splash-loading">
+                <div class="splash-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-left">
+            <a href="#" class="logo" id="nav-logo">
+                <span class="netflix-text-logo">NETFLIX</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="tvshows">TV Shows</a></li>
+                <li><a href="#" class="nav-link" data-section="movies">Movies</a></li>
+                <li><a href="#" class="nav-link" data-section="mylist">My List</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="search-container" id="search-container">
+                <button class="search-btn" id="search-toggle" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </button>
+                <input type="text" id="search-input" class="search-input" placeholder="Titles, people, genres"
+                    autocomplete="off">
+            </div>
+            <button class="notification-btn" id="notification-btn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span class="notification-badge">3</span>
+            </button>
+            <div class="profile-menu" id="profile-menu">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Profile"
+                    class="profile-avatar" id="profile-avatar">
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <div class="dropdown-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Profile">
+                        <span>User</span>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-link">Account</a>
+                    <a href="#" class="dropdown-link">Help Center</a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-link">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+
+        <!-- Hero Banner -->
+        <section id="hero-banner" class="hero-banner">
+            <div class="hero-bg" id="hero-bg"></div>
+            <div class="hero-gradient"></div>
+            <div class="hero-content" id="hero-content">
+                <div class="hero-tag">
+                    <span class="tag-icon">▶</span>
+                    <span>N</span> SERIES
+                </div>
+                <h1 class="hero-title" id="hero-title"></h1>
+                <p class="hero-overview" id="hero-overview"></p>
+                <div class="hero-info" id="hero-info">
+                    <span class="hero-rating"><svg viewBox="0 0 24 24" width="16" height="16" fill="#46d369">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg> <span id="hero-rating-text"></span></span>
+                    <span class="hero-year" id="hero-year"></span>
+                    <span class="hero-badge">HD</span>
+                    <span class="hero-badge badge-age">16+</span>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn-play" id="btn-play">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="#000">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                        Play
+                    </button>
+                    <button class="btn-info" id="btn-info">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="16" x2="12" y2="12" />
+                            <line x1="12" y1="8" x2="12.01" y2="8" />
+                        </svg>
+                        More Info
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movie Rows Container -->
+        <div id="rows-container" class="rows-container"></div>
+
+    </main>
+
+    <!-- ===== MOVIE DETAIL MODAL ===== -->
+    <div id="movie-modal" class="movie-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content" id="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Close">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="modal-hero" id="modal-hero">
+                <div class="modal-hero-gradient"></div>
+                <div class="modal-hero-info">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <div class="modal-actions">
+                        <button class="btn-play modal-play" id="modal-play-btn">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="#000">
+                                <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                            Play
+                        </button>
+                        <button class="btn-icon" id="modal-add-list" aria-label="Add to My List" title="Add to My List">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="modal-like" aria-label="Like" title="Like">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-details">
+                    <div class="modal-meta">
+                        <span class="meta-match" id="modal-match"></span>
+                        <span class="meta-year" id="modal-year"></span>
+                        <span class="meta-badge">HD</span>
+                        <span class="meta-runtime" id="modal-runtime"></span>
+                    </div>
+                    <p class="modal-overview" id="modal-overview"></p>
+                </div>
+                <div class="modal-sidebar">
+                    <p><span class="meta-label">Genres:</span> <span id="modal-genres"></span></p>
+                    <p><span class="meta-label">Rating:</span> <span id="modal-rating"></span></p>
+                    <p><span class="meta-label">Language:</span> <span id="modal-language"></span></p>
+                </div>
+            </div>
+            <div class="modal-similar">
+                <h3>More Like This</h3>
+                <div class="similar-grid" id="similar-grid"></div>
+            </div>
+            <!-- Trailer Section -->
+            <div class="modal-trailer" id="modal-trailer-section" style="display:none;">
+                <h3>Trailer</h3>
+                <div class="trailer-container" id="trailer-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SEARCH RESULTS OVERLAY ===== -->
+    <div id="search-results-overlay" class="search-results-overlay">
+        <div class="search-results-header">
+            <h2>Search Results for "<span id="search-query-display"></span>"</h2>
+        </div>
+        <div class="search-results-grid" id="search-results-grid"></div>
+    </div>
+
+    <!-- ===== VIDEO PLAYER MODAL ===== -->
+    <div id="video-player-modal" class="video-player-modal">
+        <div class="video-player-overlay" id="video-player-overlay"></div>
+        <div class="video-player-content">
+            <button class="video-close" id="video-close" aria-label="Close">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div id="video-player-container" class="video-player-container"></div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
